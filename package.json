@@ -2,7 +2,7 @@
   "name": "web_project_around_express",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "npx eslint .",
@@ -10,7 +10,7 @@
     "dev": "nodemon app.js"
   },
   "repository": {
-    "type": "git, module",
+    "type": "git",
     "url": "git+https://github.com/Esteban2306/web_project_around_express.git"
   },
   "author": "Esteban Castañeda",
