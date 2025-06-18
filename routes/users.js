@@ -1,16 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const fs = require('node:fs');
-const getUsers = require('../data/users.json');
+
 
 
 router.get('/', (req, res) => {
   fs.readFile('./data/users.json', 'utf8', (err, data) => {
     if (err) {
-      return res.status(500).json({ message: 'Error al leer el archivo de usuarios' });
+      res.status(500).json({ message: 'Error al leer el archivo de usuarios' });
+      return
     }
-    res.json(JSON.parse(data));
-    return;
+    return (res.json(JSON.parse(data)));
   });
 });
 
@@ -21,9 +21,9 @@ router.get('/:id', (req, res) => {
       return res.status(500).json({ message: 'Error al leer el archivo de usuarios' });
     }
     if (user) {
-      res.json(user);
+      return (res.json(JSON.parse(user)));
     } else {
-      res.status(404).json({ message: 'ID de usuario no encontrado' });
+      return (res.status(404).json({ message: 'ID de usuario no encontrado' }));
     }
   })
 });
