@@ -1,10 +1,13 @@
 const express = require('express');
+const mongoose = require('mongoose')
 const path = require('node:path');
 const usersRouter = require('./routes/users');
 const cardsRouter = require('./routes/cards');
 
+mongoose.connect('mongodb://localhost:27017/aroundb')
 const { PORT = 3000, BASE_PATH } = process.env;
 const app = express();
+app.disable('x-powered-by');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
