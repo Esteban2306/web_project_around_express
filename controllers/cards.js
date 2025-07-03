@@ -1,5 +1,6 @@
+const path = require('node:path');
 const fs = require('node:fs/promises');
-const filePath = require('../data/cards.json');
+const filePath = path.join(__dirname, '../data/cards.json');
 
 const getAllCards = async (req, res) => {
     try {
