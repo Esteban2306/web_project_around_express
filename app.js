@@ -11,8 +11,11 @@ app.disable('x-powered-by');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(express.json());
+
 app.use('/users', usersRouter);
 app.use('/cards', cardsRouter);
+
 
 
 app.use((req, res) => {
