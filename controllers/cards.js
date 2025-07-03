@@ -12,6 +12,43 @@ const getAllCards = async (req, res) => {
     }
 }
 
+const createCards = async (req, res) => {
+    try {
+        const data = await fs.readFile(filePath, 'utf8');
+        const cards = JSON.parse(data);
+        const newCard = {
+            name: req.body.name,
+            link: req.body.link,
+            owner: req.body.owner,
+            createdAt: new Date()
+        }
+        cards.push(newCard);
+        await fs.writeFile(filePath, JSON.stringify(cards));
+        res.json(newCard);
+    } catch (err) {
+        res.status(500).json({ message: 'Error al crear la tarjeta' });
+    }
+}
+
+const deleteCards = async (req, res) => {
+    try {
+        const data = await fs.readFile(filePath, 'utf8');
+        const cards = JSON.parse(data);
+        const card = cards.find(c => c.id === req.params.id);
+        if (card) {
+            cards.splice(cards.indexOf(card), 1);
+            await fs.writeFile(filePath, JSON.stringify(cards));
+            res.json(card);
+        } else {
+            res.status(404).json({ message: 'ID de tarjeta no encontrado' });
+        }
+    } catch (err) {
+        res.status(500).json({ message: 'Error al eliminar la tarjeta' });
+    }
+}
+
 module.exports = {
-    getAllCards
+    getAllCards,
+    createCards,
+    deleteCards
 }
