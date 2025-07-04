@@ -9,7 +9,6 @@ const getAllCards = async (req, res) => {
         res.json(card);
         return;
     } catch (err) {
-        console.log(err);
         res.status(500).json({ message: 'Error al leer el archivo de tarjetas' });
     }
 }
@@ -26,7 +25,6 @@ const createCards = async (req, res) => {
         await card.save();
         res.json(card);
     } catch (err) {
-        console.log(err);
         res.status(500).json({ message: 'Error al crear la tarjeta' });
     }
 }
@@ -44,7 +42,6 @@ const deleteCards = async (req, res) => {
             res.status(404).json({ message: 'ID de tarjeta no encontrado' });
         }
     } catch (err) {
-        console.log(err);
         res.status(500).json({ message: 'Error al eliminar la tarjeta' });
     }
 }
@@ -58,7 +55,6 @@ const giveLike = async (req, res) => {
         );
         res.json(data);
     } catch (err) {
-        console.log(err);
         res.status(500).json({ message: 'Error al dar like a la tarjeta' });
     }
 }
@@ -72,7 +68,6 @@ const removeLike = async (req, res) => {
         );
         res.json(data);
     } catch (err) {
-        console.log(err);
         res.status(500).json({ message: 'Error al quitar like a la tarjeta' });
     }
 }

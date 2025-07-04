@@ -5,7 +5,6 @@ const getAllUSers = async (req, res) => {
         const data = await userSchema.find()
         res.json(data);
     } catch (err) {
-        console.log(err);
         res.status(500).json({ message: 'Error al leer el archivo de usuarios' });
     }
 };
@@ -19,7 +18,6 @@ const getUserById = async (req, res) => {
             return res.status(404).json({ message: 'ID de usuario no encontrado' });
         }
     } catch (err) {
-        console.log(err);
         res.status(500).json({ message: 'Error al leer el archivo de usuarios' });
     }
 };
@@ -32,7 +30,6 @@ const createUser = async (req, res) => {
         res.json(data);
         return;
     } catch (err) {
-        console.log(err);
         res.status(500).json({ message: 'Error al crear el usuario' });
     }
 }
@@ -46,7 +43,6 @@ const updateUser = async (req, res) => {
         res.json(data);
         return;
     } catch (err) {
-        console.log(err);
         res.status(500).json({ message: 'Error al actualizar el usuario' });
     }
 }
@@ -60,7 +56,6 @@ const updateAvatar = async (req, res) => {
         res.json(data);
         return;
     } catch (err) {
-        console.log(err);
         res.status(500).json({ message: 'Error al actualizar el avatar' });
     }
 }
