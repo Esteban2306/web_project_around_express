@@ -37,8 +37,38 @@ const createUser = async (req, res) => {
     }
 }
 
+const updateUser = async (req, res) => {
+    try {
+        const data = await userSchema.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            { new: true, runValidators: true });
+        res.json(data);
+        return;
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ message: 'Error al actualizar el usuario' });
+    }
+}
+
+const updateAvatar = async (req, res) => {
+    try {
+        const data = await userSchema.findByIdAndUpdate(
+            req.params.id,
+            { avatar: req.body.avatar },
+            { new: true, runValidators: true });
+        res.json(data);
+        return;
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ message: 'Error al actualizar el avatar' });
+    }
+}
+
 module.exports = {
     getAllUSers,
     getUserById,
-    createUser
+    createUser,
+    updateUser,
+    updateAvatar
 }

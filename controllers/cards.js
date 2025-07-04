@@ -49,12 +49,38 @@ const deleteCards = async (req, res) => {
     }
 }
 
-// module.exports.createCard = (req, res) => {
-//     console.log(req.user._id); // _id se volverá accesible
-// }
+const giveLike = async (req, res) => {
+    try {
+        const data = await cardSchema.findByIdAndUpdate(
+            req.params.id,
+            { $addToSet: { likes: req.user._id } },
+            { new: true }
+        );
+        res.json(data);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ message: 'Error al dar like a la tarjeta' });
+    }
+}
+
+const removeLike = async (req, res) => {
+    try {
+        const data = await cardSchema.findByIdAndUpdate(
+            req.params.id,
+            { $pull: { likes: req.user._id } },
+            { new: true }
+        );
+        res.json(data);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ message: 'Error al quitar like a la tarjeta' });
+    }
+}
 
 module.exports = {
     getAllCards,
     createCards,
-    deleteCards
+    deleteCards,
+    giveLike,
+    removeLike
 }
