@@ -11,16 +11,18 @@ app.disable('x-powered-by');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(express.json());
-app.use('/users', usersRouter);
-app.use('/cards', cardsRouter);
-
 app.use((req, res, next) => {
   req.user = {
     _id: '6865cb10eb8b457cfa25e7cc'
   }
   next()
 })
+
+app.use(express.json());
+app.use('/users', usersRouter);
+app.use('/cards', cardsRouter);
+
+
 
 app.use((req, res) => {
   res.status(404).json({ message: 'Recurso solicitado no encontrado' });
